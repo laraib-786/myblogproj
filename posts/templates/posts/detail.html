@@ -1,0 +1,37 @@
+
+{% extends 'base.html'  %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="display-4">{{posts.title}}</h1>
+
+        <br>
+
+        <p>Written by: {{posts.author}}</p>
+        <form action="{% url 'posts:like' id=posts.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit", name="post_id", value="{{posts.id}}", class="btn btn-md btn-primary mr-2">{{total_likes}} Likes</button>
+        </form>
+        <br>
+        <p>Created: {{posts.created_at}} | Updated: {{posts.updated_at}}</p>
+      </div>
+    </div>
+
+
+    <div class="row ">
+      <div class="col-12">
+        <p>{{posts.content}}</p>
+      </div>
+    </div>
+    {% if request.user == posts.author %}
+      <div class="row ">
+        <div class="col-12">
+          <a href ="{% url 'posts:update' id=posts.id %}" class="btn btn-md btn-warning">Edit</a>
+          <a href ="{% url 'posts:delete' id=posts.id %}" class="btn btn-md btn-danger">Delete</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+{% endblock content %}

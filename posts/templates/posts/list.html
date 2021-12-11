@@ -1,0 +1,22 @@
+{% extends 'base.html'  %}
+{% block content %}
+  <div class="container px-5">
+    <div class="row">
+      <h1 class ="display-4 p-2">Post List</h1>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {% for p in posts  %}
+          <a href="{% url 'posts:detail' id=p.id %}">{{p.title}}</a>
+          <br>
+          {% if p.content|length > 255 %}
+            <p> {{p.content|slice:"255"}}...</p>
+          {% else %}
+            <p> {{p.content}}</p>
+          {% endif %}
+          <hr />
+        {% endfor %}
+        </div>
+    </div>
+  </div>
+{% endblock content %}
