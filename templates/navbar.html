@@ -1,32 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'static_pages:home' %}">Blog</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span <class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #ae80b6;"id="navbar">
+  <a class="navbar-brand" href="{% url 'static_pages:home' %}" style="color:white">Write2Improve</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse " id="collapsibleNavbar">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'posts:list'%}">All Blog Posts</a>
+        <a class="nav-link" href="{% url 'posts:list'%}" style="color:white"> All Blog Posts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'posts:create'%}">Create Blog</a>
+        <a class="nav-link" href="{% url 'posts:create'%}" style="color:white">Create Blog</a>
       </li>
       {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:profile' username=user.username %}">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-          </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:profile' username=user.username %}" style="color:white">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:logout' %}" style="color:white">Logout</a>
+      </li>
       {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:create' %}">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
-          </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:create' %}" style="color:white">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:login' %}" style="color:white">Login</a>
+      </li>
       {% endif %}
     </ul>
   </div>
-  </nav>
+</nav>

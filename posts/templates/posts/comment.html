@@ -1,0 +1,27 @@
+
+{% extends 'base.html'  %}
+{% block content %}
+  <div class="container px-5" >
+    <div class="row">
+      <h1 class="display-4">Add comment</h1>
+      <h4 class="text-danger"> {{error}}</h4>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <form action="{% url 'posts:comment' id=posts.id %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" name="title" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="content">Comment</label>
+            <textarea name="content" rows="8" class="form-control" ></textarea>
+          </div>
+          <input type="submit"  value="Create"  class="btn btn-md btn-primary mr-2"/>
+          <a href ="{% url 'posts:detail' id=posts.id %}" class="btn btn-md btn-danger">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

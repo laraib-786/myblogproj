@@ -8,7 +8,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
             <label for="title">Post Title</label>
@@ -17,6 +17,10 @@
           <div class="form-group">
             <label for="content">Post Content</label>
             <textarea name="content" rows="8" class="form-control" ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fileupload">Upload Image</label>
+            <input type = "file" name = "fileupload" accept = "image/*" />
           </div>
           <input type="submit"  value="Create"  class="btn btn-md btn-primary mr-2"/>
           <a href ="{% url 'posts:list' %}" class="btn btn-md btn-danger">Cancel</a>

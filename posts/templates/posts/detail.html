@@ -7,12 +7,19 @@
         <h1 class="display-4">{{posts.title}}</h1>
 
         <br>
-
+        
         <p>Written by: {{posts.author}}</p>
         <form action="{% url 'posts:like' id=posts.id %}" method="POST">
           {% csrf_token %}
           <button type="submit", name="post_id", value="{{posts.id}}", class="btn btn-md btn-primary mr-2">{{total_likes}} Likes</button>
         </form>
+        <br>
+        <br>
+        {% if posts.image %}
+        <div class="image">
+          <img src="{{ posts.image.url }}" alt="blog">
+        </div>
+        {% endif %}
         <br>
         <p>Created: {{posts.created_at}} | Updated: {{posts.updated_at}}</p>
       </div>
@@ -33,5 +40,28 @@
       </div>
     {% endif %}
   </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <hr>
+        <h3>Comments.....</h3>
+        {% if not posts.comments.all %}
+        No comment yet...<a href="{% url 'posts:comment' id=posts.id %}">Add one</a>
+        {% else %}
+          {% for comment in posts.comments.all %}
+            <strong>
+              {{comment.name}}-
+              {{comment.commented_at}}
+            </strong>
+            <br>
+              {{comment.content}}
+              <hr>
+          {% endfor %}
+          <a href="{% url 'posts:comment' id=posts.id %}">Add one</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
 
 {% endblock content %}

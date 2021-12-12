@@ -6,7 +6,8 @@ from .views import(
     post_list_view,
     post_update_view,
     post_delete_view,
-    post_like_view
+    post_like_view,
+    post_comments_view
 )
 
 app_name='posts';
@@ -18,5 +19,6 @@ urlpatterns=[
     path('list/',post_list_view, name='list'),
     path('update/<int:id>',post_update_view, name='update'),
     path('delete/<int:id>',post_delete_view, name='delete'),
-    path('like/<int:id>',post_like_view,name='like')
+    path('like/<int:id>',post_like_view,name='like'),
+    path('detail/<int:id>/comment/',post_comments_view,name='comment')
 ]
